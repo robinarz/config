@@ -1,0 +1,8 @@
+## Programming tools i use on a daily basis
+
+- mise-en-place (https://mise.jdx.dev/)
+- uv (https://github.com/astral-sh/uv)
+- atuin (https://github.com/atuinsh/atuin)
+- bat (https://github.com/sharkdp/bat?tab=readme-ov-file#installation)
+- tokei (https://github.com/XAMPPRocky/tokei) -> via cargo so rust needs to be installed
+- delta (https://github.com/dandavison/delta?tab=readme-ov-file)
