@@ -1,0 +1,51 @@
+# Gtk stuff
+gtk-titlebar = false
+gtk-adwaita = false
+gtk-wide-tabs = false
+gtk-tabs-location = bottom
+
+# Keybinds
+keybind = super+shift+r=reload_config
+
+# Window aspects
+window-decoration = false
+
+# Empty values reset the configuration for the default value
+font-family = Berkeley Mono
+
+# The syntax is "key = value". The whitespace around the equals doesn't matter.
+background = 111111
+foreground = e0e0e0
+
+# black
+palette = 0=#1d2021
+palette = 8=#7c6f64
+# red
+palette = 1=#cc241d
+palette = 9=#fb4934
+# green
+palette = 2=#98971a
+palette = 10=#b8bb26
+# yellow
+palette = 3=#d79921
+palette = 11=#fabd2f
+# blue
+palette = 4=#458588
+palette = 12=#83a598
+# purple
+palette = 5=#b16286
+palette = 13=#d3869b
+# aqua
+palette = 6=#689d6a
+palette = 14=#8ec07c
+# white
+palette = 7=#a89984
+palette = 15=#fbf1c7
+
+cursor-style = block
+
+# Misc
+title = Ghostty
+shell-integration = none
+shell-integration-features = no-cursor
+
