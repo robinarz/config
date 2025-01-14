@@ -2,7 +2,8 @@
 
 set -x
 
-BIN_PATH="${XDG_CONFIG_HOME}/bin"
+BIN_PATH="$HOME/.local/bin"
+BUILD_PATH="$HOME/build"
 
 KUBECTL_VERSION="$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)"
 HELM_VERSION="$(curl -sL https://api.github.com/repos/helm/helm/releases/latest | jq -r '.tag_name')"
@@ -22,6 +23,7 @@ if ! command -v ~/.local/bin/mise &>/dev/null; then
     curl https://mise.run | sh
 else
     echo "Mise en Place is already installed."
+fi
 
 ### Sysadmin / devops tools ###
 echo "Installing Sysadmin/devops tools..."
@@ -49,7 +51,7 @@ echo "Installing Sysadmin/devops tools..."
 [ -x "$(command -v kubectx)" ] || \
   (
   echo '=> Install kubectx'
-  [ ! -d "${BUILD_PATH}/kubectx" ] && git clone -q https://github.com/ahmetb/kubectx "${PROJECTS_PATH}/tools/kubectx" 2>/dev/null; \
+  [ ! -d "${BUILD_PATH}/kubectx" ] && git clone -q https://github.com/ahmetb/kubectx "${BUILD_PATH}/kubectx" 2>/dev/null; \
   ln -sf "${BUILD_PATH}/kubectx/kubectx" "${BIN_PATH}/kctx" && \
   ln -sf "${BUILD_PATH}/kubectx/kubens" "${BIN_PATH}/kns"
   )
