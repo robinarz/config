@@ -1,4 +1,5 @@
 export SHELL=/bin/zsh
+export ZPLUG_HOME=$ZDOTDIR/zplug
 
 export LANG=en_US.UTF8
 
@@ -16,20 +17,36 @@ setopt hist_ignore_space
 autoload -U +X bashcompinit && bashcompinit
 autoload -U +X compinit && compinit
 
-source $XDG_CONFIG_HOME/antigen/antigen.zsh
+# Load zplug
+if [[ -d $ZPLUG_HOME ]]; then
+    source $ZPLUG_HOME/init.zsh
+else
+    echo "zplug is not installed in $ZPLUG_HOME. Please install it first."
+    return
+fi
 
-antigen bundle 'zsh-users/zsh-syntax-highlighting'
-antigen bundle 'zsh-users/zsh-autosuggestions'
-antigen apply
+# Define plugins
+zplug "zsh-users/zsh-syntax-highlighting", defer:2
+zplug "zsh-users/zsh-autosuggestions"
+zplug "junegunn/fzf", hook-build:"./install --bin"
+
+# Lazy load fzf's Ctrl-R integration
+bindkey '^r' fzf-history-widget
+
+# Install plugins if missing
+if ! zplug check; then
+    zplug install
+fi
+
+# Load plugins
+zplug load
 
 bindkey '^ ' autosuggest-accept
 bindkey '^n' autosuggest-accept
-# 
+ 
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=6'
 
 eval "$(starship init zsh)"
-eval "$(atuin init zsh)"
-eval "$(keychain --eval --agents ssh id_ed25519)"
 eval "$(mise activate zsh)"
 
 ## files include
@@ -64,8 +81,6 @@ fi
 # Rust
 export PATH="$HOME/.cargo/bin:$PATH"
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
 if [[ -f "$HOME/.zsh_local" ]]; then
   source ~/.zsh_local
 fi
@@ -80,3 +95,11 @@ if [[ -d "$XDG_CONFIG_HOME/bin" ]]; then
 fi
 
 export PATH="$HOME/.local/bin/:$PATH"
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+
+# bun completions
+[ -s "/home/robinho/.bun/_bun" ] && source "/home/robinho/.bun/_bun"
