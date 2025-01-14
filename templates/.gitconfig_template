@@ -1,0 +1,27 @@
+[user]
+    name = <github_username>
+    email = <github_mail_address>
+
+[core]
+    editor = nvim
+	pager = delta
+
+[interactive]
+    diffFilter = delta --color-only
+
+[delta]
+	line-numbers = true
+	side-by-side = false
+	navigate = true
+
+[alias]
+    lg = log --oneline --graph --decorate --all
+
+[color]
+    ui = auto
+
+[push]
+    default = simple
+
+[pull]
+  rebase = true
