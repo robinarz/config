@@ -17,9 +17,9 @@ install: ## Install dotfiles
 	.$(SCRIPTS_DIR)/links.sh
 
 
-.PHONY: all zsh nvim build_reqs pkgs dev_tools
+.PHONY: all zsh nvim build_reqs pkgs dev_tools docker treesitter tools
 
-all: zsh nvim pkgs dev_tools
+all: dirs build_reqs zsh nvim pkgs docker mise dev_tools treesitter tools
 	@echo "All done"
 
 zsh: ## Install zsh and setup as default shell
@@ -54,4 +54,29 @@ nvim: dirs build_reqs ## Build Neovim from source
 
 dev_tools: ## Install devtools
 	@echo "Installing dev-tools..."
-	.$(SCRIPTS_DIR)/devtools.sh
+	$(SCRIPTS_DIR)/devtools.sh
+
+mise: ## Install mise
+	@echo "Checking if mise is installed..."
+	@command -v $(HOME)/.local/mise >/dev/null 2>&1 || { \
+		echo "Error: mise is not installed. Please install it first."; \
+		exit 1; \
+	}
+	@echo "Installing mise..."
+	curl https://mise.run | sh
+
+docker: ## Install Docker engine
+	$(SCRIPTS_DIR)/docker.sh
+
+treesitter: ## Install treesitter-cli with cargo as it's needed for nvim
+	@echo "Checking if cargo is installed..."
+	@command -v cargo >/dev/null 2>&1 || { \
+		echo "Error: cargo is not installed. Please install Rust and Cargo first."; \
+		exit 1; \
+	}
+	@echo "Installing treesitter-cli through cargo..."
+	cargo install tree-sitter-cli
+
+tools: ## Installing some tools that use through cargo
+	@echo "Installing tools through cargo..."
+	cargo install git-delta tokei
