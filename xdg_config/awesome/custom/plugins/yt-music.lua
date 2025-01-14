@@ -1,0 +1,2 @@
+-- I have a YT Music thing installed from here, could be fun to create some shortcuts for this.
+-- https://github.com/th-ch/youtube-music/blob/master/src/plugins/api-server/backend/routes/control.ts
