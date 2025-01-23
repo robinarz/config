@@ -1,22 +1,28 @@
-# Gtk stuff
-gtk-titlebar = false
-gtk-adwaita = false
-gtk-wide-tabs = false
-gtk-tabs-location = bottom
+# Blank lines are ignored!
 
-# Keybinds
+keybind = ctrl+z=close_surface
+keybind = ctrl+tab=next_tab
+keybind = ctrl+shift+tab=previous_tab
 keybind = super+shift+r=reload_config
 
-# Window aspects
-window-decoration = false
+gtk-titlebar = false
+gtk-tabs-location = bottom
+gtk-wide-tabs = false
 
 # Empty values reset the configuration for the default value
-font-family = Berkeley Mono
+
+# font-family = Berkeley Mono
+font-family = Berkeley Mono Condensed
+font-family-bold = Berkeley Mono Bold Condensed
+font-family-italic = Berkeley Mono Condensed Oblique
 
 # The syntax is "key = value". The whitespace around the equals doesn't matter.
 background = 111111
 foreground = e0e0e0
 
+# Colors can be changeed by setting the 16 colors of 'palette', which each color
+# being defined as regular and bold.
+#
 # black
 palette = 0=#1d2021
 palette = 8=#7c6f64
@@ -45,7 +51,4 @@ palette = 15=#fbf1c7
 cursor-style = block
 
 # Misc
-title = Ghostty
-shell-integration = none
 shell-integration-features = no-cursor
-
